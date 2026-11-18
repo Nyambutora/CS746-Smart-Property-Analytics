@@ -1,0 +1,51 @@
+# Smart Property Analytics
+
+Machine Learning for House Price and Condition Predictions  
+Malaki Nyambutora · CS 746 — Perspectives on Data Science
+
+This project uses the Ames Housing dataset to estimate residential sale prices and classify properties into three condition categories. The Jupyter notebook documents the analysis and model evaluation. A local Streamlit dashboard lets users enter property details, generate predictions, and explore the results.
+
+View the project notebook: https://github.com/Nyambutora/CS746-Smart-Property-Analytics/blob/main/ML_House_Price_and_Condition_Predictions.ipynb 
+Download the runnable project: https://github.com/Nyambutora/CS746-Smart-Property-Analytics/blob/main/Smart_Property_Analytics_Final.zip
+
+## Project Overview
+
+The dataset contains 2,930 residential sales from Ames, Iowa. I used 2,344 properties for training and model comparison and reserved 586 for held-out testing. I compared four regression models and three classification models using five-fold cross-validation. I selected the price model by mean absolute error (MAE) and the condition classifier by macro F1.
+
+Overall quality and above-ground living area were the two highest-ranked features for sale-price prediction. Remodel year ranked first for condition classification. The notebook reports permutation importance for both models and uses SHAP to explain one held-out price estimate.
+
+## Run the Dashboard
+
+1. Download and extract `Smart_Property_Analytics_Final.zip`.
+2. Open a terminal in the extracted folder containing `app.py`. Keep the `models/` folder beside it.
+3. Activate the Python environment used to train the models, or install compatible versions of Streamlit, pandas, joblib, scikit-learn, and XGBoost. The saved pipelines should be loaded with the package versions used to create them.
+4. Run the following command and open the local URL printed in the terminal.
+
+   
+   python -m streamlit run app.py
+  
+
+5. On the Predict tab, click Predict with the prefilled values. The dashboard should return $325,413.12 and Low.
+
+The dashboard has four tabs:
+
+   Predict: Edit property details and generate a sale-price estimate and condition category. 
+   Model Evaluation: Review held-out metrics, per-category scores, and the confusion matrix. 
+   Data and Exploratory Analysis: Compare missing-value counts before and after cleaning and explore living area versus sale price. 
+   Model Interpretation:  Compare feature importance for both models and view the SHAP explanation for the prefilled property. 
+
+## Rerun the Notebook
+
+Open Jupyter from the extracted project folder and select `ML_House_Price_and_Condition_Predictions.ipynb`. The `data/` folder contains `AmesHousing.csv` and `AmesHousing_DataDictionary.csv`. Run the notebook cells in order to reproduce the analysis. For a quick review, open the notebook directly on GitHub to see the saved outputs.
+
+## Limitations
+
+The Low, Medium, and High categories are derived from the Ames assessor’s overall condition ratings. Random Forest correctly identified 9 of 34 test properties in the High category, so its predictions should be interpreted with that limitation in mind. The sale-price model was evaluated on historical Ames transactions. Its performance on recent sales or in other markets remains untested.
+
+## Dataset Reference
+
+De Cock, D. (2011). Ames, Iowa: Alternative to the Boston Housing Data as an End of Semester Regression Project. Journal of Statistics Education, 19(3). https://doi.org/10.1080/10691898.2011.11889627
+
+
+
+
